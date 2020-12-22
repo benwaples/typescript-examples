@@ -1,25 +1,30 @@
 
-// note how an interface doesnt have an equal sign. Different syntax than a type
+// note how an interface doesn't have an equal sign. Different syntax than a type
+// interfaces can contain: other interfaces, functions, primitive values.
 interface CarType {
   make: string;
   model: string;
   year: number;
   runs: boolean;
+  summary(): string; 
 }
 
 // inferred type
-const oldCamry = {
+const oldCamry: CarType = {
   make: 'toyota',
   model: 'camry',
   year: 1997,
-  runs: true
+  runs: true,
+  summary(): string{
+    return this.make;
+  }
 }
 
 // functions that return nothing return void
 function printVehicle(car: CarType): void {
   console.log(`
     Name: ${car.model}
-    Make: ${car.make}
+    Make: ${car.summary()}
     year: ${car.year}
     runs: ${car.runs}
   `)
