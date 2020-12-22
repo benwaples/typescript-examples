@@ -4,6 +4,8 @@
 
 // always capitalize the class name
 class Vehicle {
+
+  constructor(public color: string) {}
   
   // only child classes and this class can use this method
   protected honk(): void {
@@ -13,6 +15,11 @@ class Vehicle {
 
 // copy and paste Vehicle methods onto car. Think of React
 class Car extends Vehicle {
+
+  constructor(public wheels: number, public fast: boolean, color: string){
+    super(color)
+  }
+
   // can not override instance methods in child classes.
   // use private when you dont want other developers using a certain method
   private drive(): void {
@@ -25,8 +32,12 @@ class Car extends Vehicle {
   }
 }
 
-const vehicle = new Vehicle()
+const vehicle = new Vehicle('pink')
 // note the automagical stuff
+console.log(vehicle.color)
 
-const car = new Car()
+const car = new Car(2, false, 'orange')
 car.startDrive()
+console.log(car.color,'color')
+console.log(car.wheels, 'wheels')
+console.log(car.fast, 'fast')
