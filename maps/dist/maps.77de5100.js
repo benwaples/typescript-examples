@@ -100489,9 +100489,17 @@ Object.defineProperty(exports, "__esModule", {
 
 var Company_1 = __importDefault(require("./classes/Company"));
 
-var User_1 = __importDefault(require("./classes/User"));
+var User_1 = __importDefault(require("./classes/User")); // import '@types/googlemaps';
 
-var user = new User_1.default(); // auto imports still work
+
+var user = new User_1.default();
+var map = new google.maps.Map(document.querySelector('#map'), {
+  zoom: 1,
+  center: {
+    lat: 0,
+    lng: 0
+  }
+}); // auto imports still work
 
 var company = new Company_1.default();
 console.log(user);
@@ -100524,7 +100532,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52118" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58781" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
