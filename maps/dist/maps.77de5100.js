@@ -100439,7 +100439,7 @@ function () {
   }
 
   Company.prototype.markerContent = function () {
-    return "\n    Company Name: " + this.companyName + "\n    Catch Phrase: " + this.catchPhrase + "\n    ";
+    return "\n    <div>\n      <h1>Company Name: " + this.companyName + "</h1>\n      <h3>Catch Phrase: " + this.catchPhrase + "</h3>\n    </div>\n    ";
   };
 
   return Company;
@@ -100577,7 +100577,7 @@ function () {
 
     marker.addListener('click', function () {
       var infoWindow = new google.maps.InfoWindow({
-        content: 'hello world'
+        content: mappable.markerContent()
       });
       infoWindow.open(_this.googleMap, marker);
     });

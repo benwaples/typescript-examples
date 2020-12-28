@@ -97,7 +97,7 @@ export class CustomMap {
     // see next function to see how to customize this marker
     marker.addListener('click', () => {
       const infoWindow = new google.maps.InfoWindow({
-        content: 'hello world'
+        content: mappable.markerContent()
       })
 
       infoWindow.open(this.googleMap, marker)
