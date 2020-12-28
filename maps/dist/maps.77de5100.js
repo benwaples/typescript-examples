@@ -100438,6 +100438,10 @@ function () {
     };
   }
 
+  Company.prototype.markerContent = function () {
+    return "\n    Company Name: " + this.companyName + "\n    Catch Phrase: " + this.catchPhrase + "\n    ";
+  };
+
   return Company;
 }();
 
@@ -100469,6 +100473,10 @@ function () {
       lng: Number(faker_1.default.address.longitude())
     };
   }
+
+  User.prototype.markerContent = function () {
+    return "User Name: " + this.name;
+  };
 
   return User;
 }();
@@ -100535,12 +100543,43 @@ function () {
 
 
   CustomMap.prototype.addMarkerRefactored = function (mappable) {
-    new google.maps.Marker({
+    var _this = this;
+
+    var marker = new google.maps.Marker({
       map: this.googleMap,
       position: {
         lat: mappable.location.lat,
         lng: mappable.location.lng
       }
+    }); // see next function to see how to customize this marker
+
+    marker.addListener('click', function () {
+      var infoWindow = new google.maps.InfoWindow({
+        content: 'hello world'
+      });
+      infoWindow.open(_this.googleMap, marker);
+    });
+  }; // implicit type check above. 
+  // We dont use this mappable type on the User or Company class
+  // behind the scenes, TS making sure that whatever gets passed to 'addMarkerRefactored' is of Mappable type
+
+
+  CustomMap.prototype.addMarkerWithInfo = function (mappable) {
+    var _this = this;
+
+    var marker = new google.maps.Marker({
+      map: this.googleMap,
+      position: {
+        lat: mappable.location.lat,
+        lng: mappable.location.lng
+      }
+    }); // see next function to see how to customize this marker
+
+    marker.addListener('click', function () {
+      var infoWindow = new google.maps.InfoWindow({
+        content: 'hello world'
+      });
+      infoWindow.open(_this.googleMap, marker);
     });
   };
 

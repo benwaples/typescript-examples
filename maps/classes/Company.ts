@@ -18,4 +18,11 @@ export default class Company {
       lng: Number(faker.address.longitude())
     }
   }
+
+  markerContent(): string {
+    return `
+    Company Name: ${this.companyName}
+    Catch Phrase: ${this.catchPhrase}
+    `
+  }
 }

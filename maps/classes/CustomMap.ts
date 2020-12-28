@@ -6,6 +6,7 @@ interface Mappable {
     lat: number;
     lng: number;
   }
+  markerContent(): string;
 }
 
 export class CustomMap {
@@ -55,22 +56,51 @@ export class CustomMap {
         lng: mappable.location.lng,
       }
     })
+
+    
   }
 
   // parameter must have a location property 
   // location must have lat and lng property
   // lat and lng must be a number 
   addMarkerRefactored(mappable: Mappable): void {
-    new google.maps.Marker({
+    const marker = new google.maps.Marker({
       map: this.googleMap,
       position: {
         lat: mappable.location.lat,
         lng: mappable.location.lng,
       }
     })
+
+    // see next function to see how to customize this marker
+    marker.addListener('click', () => {
+      const infoWindow = new google.maps.InfoWindow({
+        content: 'hello world'
+      })
+
+      infoWindow.open(this.googleMap, marker)
+    })
   }
   // implicit type check above. 
   // We dont use this mappable type on the User or Company class
   // behind the scenes, TS making sure that whatever gets passed to 'addMarkerRefactored' is of Mappable type
   
+  addMarkerWithInfo(mappable: Mappable): void {
+    const marker = new google.maps.Marker({
+      map: this.googleMap,
+      position: {
+        lat: mappable.location.lat,
+        lng: mappable.location.lng,
+      }
+    })
+
+    // see next function to see how to customize this marker
+    marker.addListener('click', () => {
+      const infoWindow = new google.maps.InfoWindow({
+        content: 'hello world'
+      })
+
+      infoWindow.open(this.googleMap, marker)
+    })
+  }
 }
