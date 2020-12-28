@@ -100485,8 +100485,8 @@ exports.CustomMap = void 0;
 var CustomMap =
 /** @class */
 function () {
-  function CustomMap() {
-    this.googleMap = new google.maps.Map(document.querySelector('#map'), {
+  function CustomMap(mapElement) {
+    this.googleMap = new google.maps.Map(document.querySelector(mapElement), {
       zoom: 1,
       center: {
         lat: 0,
@@ -100494,6 +100494,18 @@ function () {
       }
     });
   }
+
+  CustomMap.prototype.addUserMarker = function (user) {
+    new google.maps.Marker({
+      map: this.googleMap,
+      position: {
+        lat: user.location.lat,
+        lng: user.location.lng
+      }
+    });
+  };
+
+  CustomMap.prototype.addCompanyMarker = function (company) {};
 
   return CustomMap;
 }();
@@ -100522,7 +100534,7 @@ var CustomMap_1 = require("./classes/CustomMap"); // import '@types/googlemaps';
 var user = new User_1.default(); // auto imports still work
 
 var company = new Company_1.default();
-var map = new CustomMap_1.CustomMap();
+var map = new CustomMap_1.CustomMap('#map');
 console.log(user);
 console.log(company);
 console.log(map);

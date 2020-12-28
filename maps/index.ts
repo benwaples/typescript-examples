@@ -7,7 +7,7 @@ const user = new User();
 
 // auto imports still work
 const company = new Company();
-const map = new CustomMap()
+const map = new CustomMap('#map')
 
 console.log(user)
 console.log(company)
