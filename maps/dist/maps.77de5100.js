@@ -100429,6 +100429,7 @@ var Company =
 /** @class */
 function () {
   function Company() {
+    this.color = 'blue';
     this.companyName = faker_1.default.company.companyName();
     this.catchPhrase = faker_1.default.company.catchPhrase(); // this is where we need to initialize location with the object containing lng and lat
 
@@ -100466,6 +100467,8 @@ var User =
 /** @class */
 function () {
   function User() {
+    // TS is making sure that this class will be Mappable 
+    this.color = 'red';
     this.name = faker_1.default.name.firstName(); // this is where we need to initialize location with the object containing lng and lat
 
     this.location = {

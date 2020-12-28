@@ -9,6 +9,8 @@ export default class User implements Mappable {
     lat: number;
     lng: number;
   }
+  // TS is making sure that this class will be Mappable 
+  color: string = 'red';
 
    constructor() {
      this.name = faker.name.firstName()
