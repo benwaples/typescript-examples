@@ -1,12 +1,13 @@
 import Company from "./Company";
 import User from "./User";
 
-interface Mappable {
+export interface Mappable {
   location: {
     lat: number;
     lng: number;
   }
   markerContent(): string;
+  // color: string;
 }
 
 export class CustomMap {
@@ -94,7 +95,7 @@ export class CustomMap {
       }
     })
 
-    // see next function to see how to customize this marker
+   // add method to classes that will return a custom message for the marker
     marker.addListener('click', () => {
       const infoWindow = new google.maps.InfoWindow({
         content: mappable.markerContent()

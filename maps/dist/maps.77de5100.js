@@ -100573,7 +100573,7 @@ function () {
         lat: mappable.location.lat,
         lng: mappable.location.lng
       }
-    }); // see next function to see how to customize this marker
+    }); // add method to classes that will return a custom message for the marker
 
     marker.addListener('click', function () {
       var infoWindow = new google.maps.InfoWindow({

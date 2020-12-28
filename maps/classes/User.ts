@@ -1,7 +1,8 @@
 import faker from 'faker'
+import { Mappable } from './CustomMap';
 
 // TS convention is to not use default so that you always include curly braces
-export default class User {
+export default class User implements Mappable {
   name: string;
   // location object is not initialized, only typed here. see below for initialization.
   location: {
