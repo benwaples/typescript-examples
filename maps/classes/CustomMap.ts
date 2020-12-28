@@ -21,7 +21,7 @@ export class CustomMap {
       }
     })
   }
-
+  // refactoring starts on line 49
   addUserMarker(user: User): void {
     new google.maps.Marker({
       map: this.googleMap,
@@ -69,5 +69,8 @@ export class CustomMap {
       }
     })
   }
+  // implicit type check above. 
+  // We dont use this mappable type on the User or Company class
+  // behind the scenes, TS making sure that whatever gets passed to 'addMarkerRefactored' is of Mappable type
   
 }
