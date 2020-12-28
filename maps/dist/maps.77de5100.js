@@ -100474,7 +100474,32 @@ function () {
 }();
 
 exports.default = User;
-},{"faker":"node_modules/faker/index.js"}],"index.ts":[function(require,module,exports) {
+},{"faker":"node_modules/faker/index.js"}],"classes/CustomMap.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CustomMap = void 0;
+
+var CustomMap =
+/** @class */
+function () {
+  function CustomMap() {
+    this.googleMap = new google.maps.Map(document.querySelector('#map'), {
+      zoom: 1,
+      center: {
+        lat: 0,
+        lng: 0
+      }
+    });
+  }
+
+  return CustomMap;
+}();
+
+exports.CustomMap = CustomMap;
+},{}],"index.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -100489,22 +100514,19 @@ Object.defineProperty(exports, "__esModule", {
 
 var Company_1 = __importDefault(require("./classes/Company"));
 
-var User_1 = __importDefault(require("./classes/User")); // import '@types/googlemaps';
+var User_1 = __importDefault(require("./classes/User"));
+
+var CustomMap_1 = require("./classes/CustomMap"); // import '@types/googlemaps';
 
 
-var user = new User_1.default();
-var map = new google.maps.Map(document.querySelector('#map'), {
-  zoom: 1,
-  center: {
-    lat: 0,
-    lng: 0
-  }
-}); // auto imports still work
+var user = new User_1.default(); // auto imports still work
 
 var company = new Company_1.default();
+var map = new CustomMap_1.CustomMap();
 console.log(user);
 console.log(company);
-},{"./classes/Company":"classes/Company.ts","./classes/User":"classes/User.ts"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+console.log(map);
+},{"./classes/Company":"classes/Company.ts","./classes/User":"classes/User.ts","./classes/CustomMap":"classes/CustomMap.ts"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -100532,7 +100554,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58781" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59312" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
