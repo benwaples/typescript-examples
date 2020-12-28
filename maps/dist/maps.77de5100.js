@@ -100505,7 +100505,43 @@ function () {
     });
   };
 
-  CustomMap.prototype.addCompanyMarker = function (company) {};
+  CustomMap.prototype.addCompanyMarker = function (company) {
+    new google.maps.Marker({
+      map: this.googleMap,
+      position: {
+        lat: company.location.lat,
+        lng: company.location.lng
+      }
+    });
+  }; // the above two methods can be reduced to addMarker
+  // TS helps make reuseable code safe
+  // on the below parameter, you can only use mappable.location, 
+  // other properties on company or user will result in a TS error 
+
+
+  CustomMap.prototype.addMarker = function (mappable) {
+    // refactor the above pipe to use an interface.
+    new google.maps.Marker({
+      map: this.googleMap,
+      position: {
+        lat: mappable.location.lat,
+        lng: mappable.location.lng
+      }
+    });
+  }; // parameter must have a location property 
+  // location must have lat and lng property
+  // lat and lng must be a number 
+
+
+  CustomMap.prototype.addMarkerRefactored = function (mappable) {
+    new google.maps.Marker({
+      map: this.googleMap,
+      position: {
+        lat: mappable.location.lat,
+        lng: mappable.location.lng
+      }
+    });
+  };
 
   return CustomMap;
 }();
@@ -100528,16 +100564,14 @@ var Company_1 = __importDefault(require("./classes/Company"));
 
 var User_1 = __importDefault(require("./classes/User"));
 
-var CustomMap_1 = require("./classes/CustomMap"); // import '@types/googlemaps';
-
+var CustomMap_1 = require("./classes/CustomMap");
 
 var user = new User_1.default(); // auto imports still work
 
 var company = new Company_1.default();
 var map = new CustomMap_1.CustomMap('#map');
-console.log(user);
-console.log(company);
-console.log(map);
+map.addMarker(user);
+map.addMarker(company);
 },{"./classes/Company":"classes/Company.ts","./classes/User":"classes/User.ts","./classes/CustomMap":"classes/CustomMap.ts"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
