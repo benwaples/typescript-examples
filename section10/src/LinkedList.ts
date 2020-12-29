@@ -1,10 +1,13 @@
+import { Sorter2 } from "./Sorter";
+
 class Node {
   next: Node | null = null;
 
   constructor(public data: number) {}
 }
 
-export class LinkedList {
+export class LinkedList extends Sorter2 {
+  // if the child class doesn't have a constructor, parent class doesn't require child to call super()
   head: Node | null = null;
 
   add(data: number): void {

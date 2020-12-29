@@ -1,5 +1,9 @@
-export class CharacterCollection {
-  constructor(public data: string) {}
+import { Sorter2 } from "./Sorter";
+
+export class CharacterCollection extends Sorter2{
+  constructor(public data: string) {
+    super()
+  }
 
   get length(): number {
     return this.data.length;
@@ -7,7 +11,7 @@ export class CharacterCollection {
 
   compare(leftIndex: number, rightIndex: number): boolean {
     const lowercase = this.data.toLocaleLowerCase()
-    return this.data[leftIndex] > this.data[rightIndex]
+    return lowercase[leftIndex] > lowercase[rightIndex]
   }
 
   swap(leftIndex: number, rightIndex: number): void {
