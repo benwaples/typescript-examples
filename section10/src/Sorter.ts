@@ -53,6 +53,7 @@ export class Sorter {
 // error because we will be extending the sorter2 class on all other classes that will have length, compare, and swap
 // however THIS class doesn't have those yet.
 // turn this into an abstract class to avoid errors
+// abstract class notes below sorter2
 export class Sorter2 {
   // Sorter can receive an array of numbers or a string
 
@@ -72,3 +73,13 @@ export class Sorter2 {
     }
   }
 }
+
+/*/ abstract class notes/*/
+// cannot be used to create object directly
+  // NOT ALLOWED: const abstractClass = new AbstractClass()
+
+// only used as parent classes
+  // can only be extended
+  // can reference methods and attributes that dont yet exists
+    // must provide names and types for those methods
+
