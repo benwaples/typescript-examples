@@ -3,6 +3,11 @@ import { NumberCollection } from "./NumberCollection";
 // as long as something has these properties than it can be sorted
 // TS will not check that these functions and return values are DOING what you want.
 // for example, compare could receive 2 parameters, both being numbers, and then always return a fixed boolean
+
+// this interface isn't needed anymore because we are extending the Sorter2 class
+// we would use interface when we have 2 very different objects that we want to work together
+// however it does allow for loose coupling.. no clue what that really means tho
+
 interface Sortable {
   length: number;
   compare(leftIndex: number, rightIndex: number): boolean;
@@ -87,4 +92,12 @@ export abstract class Sorter2 {
   // can only be extended
   // can reference methods and attributes that dont yet exists
     // must provide names and types for those methods
+
+// sets up a contract between classes
+  // strongly couples two classes together -- can be a downside
+  // without the abstract class, other classes wouldn't be able to function properly
+
+// build up a definition of an object
+
+
 
