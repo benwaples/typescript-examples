@@ -1,9 +1,9 @@
 maps/node_modules
-
 maps/package-lock
-
-maps/dist
 maps/dist/
 maps/.cache/
+
+
 section10/build/
-section10/build
+section10/package-lock.json
+section10/node_modules

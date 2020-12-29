@@ -1,0 +1,16 @@
+{
+  "name": "section10",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^5.3.0", /*running multiple scripts at the same time -- Compiling and executing*/
+    "nodemon": "^2.0.6" /*run node every time something changes in the code*/
+  }
+}
