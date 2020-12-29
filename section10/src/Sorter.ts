@@ -52,6 +52,7 @@ export class Sorter {
 
 // error because we will be extending the sorter2 class on all other classes that will have length, compare, and swap
 // however THIS class doesn't have those yet.
+// turn this into an abstract class to avoid errors
 export class Sorter2 {
   // Sorter can receive an array of numbers or a string
 

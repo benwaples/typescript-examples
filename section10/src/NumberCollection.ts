@@ -1,6 +1,10 @@
-export class NumberCollection {
+import { Sorter2 } from "./Sorter";
 
-  constructor(public data: number[]) {}
+export class NumberCollection extends Sorter2 {
+
+  constructor(public data: number[]) {
+    super();
+  }
 
   
   // when you add the get keyword, you do not have to call the function like a normal method
