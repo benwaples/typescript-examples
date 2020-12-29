@@ -1,3 +1,5 @@
+import { NumberCollection } from "./NumberCollection";
+
 export class Sorter {
   // Sorter can receive an array of numbers or a string
   constructor(public collection: number[]| string) {
@@ -38,9 +40,9 @@ export class Sorter {
   }
 }
 
-class Sorter2 {
+export class Sorter2 {
   // Sorter can receive an array of numbers or a string
-  constructor(public collection: /*/ TODO: type me out/*/) {
+  constructor(public collection: NumberCollection) {
     this.collection = collection;
   }
 
@@ -52,11 +54,9 @@ class Sorter2 {
       // make sure that we exclude the previously largest number
       for (let j = 0; j < length - i - 1; j ++) {
         // if left is larger than right
-        if (this.collection[j] > this.collection[j + 1]) {
+        if (this.collection.compare(j, j+1)) {
           // swap the left and right
-          const temp = this.collection[j]
-          this.collection[j] = this.collection[j+1]
-          this.collection[j+1] = temp
+          this.collection.swap(j, j+1)
         }
       }
     }
