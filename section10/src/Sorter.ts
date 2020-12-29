@@ -54,9 +54,14 @@ export class Sorter {
 // however THIS class doesn't have those yet.
 // turn this into an abstract class to avoid errors
 // abstract class notes below sorter2
-export class Sorter2 {
-  // Sorter can receive an array of numbers or a string
+export abstract class Sorter2 {
+  // abstracting methods
+  abstract compare(leftIndex: number, rightIndex: number): boolean;
+  abstract swap(leftIndex: number, rightIndex: number): void;
 
+  // abstracting getters
+  abstract length: number; /*/ treat it like a method /*/
+  
   bubbleSortNumbers(): void {
   const { length } = this;
 
