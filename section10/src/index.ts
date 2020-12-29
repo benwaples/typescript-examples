@@ -9,6 +9,7 @@ class Sorter {
 
     // implicitly say that this loop will only ever run if the collection is an array
     // this is called a type guard
+    // this type guard will return true or false, takes an instance of a constructor. Think of new Array()
     if(this.collection instanceof Array) {
       // keep track of number of iterations of the array
       for (let i = 0; i < length; i ++) {
@@ -28,7 +29,12 @@ class Sorter {
 
   bubbleSortString(): void {
 
-    // logic will only ever work if the collection is a string
+    // another type guard
+    // type of will return a string of value type
+    // only works for string, boolean, number
+    if(typeof this.collection === 'string') {
+      
+    }
   }
 }
 
