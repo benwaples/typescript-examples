@@ -1,6 +1,8 @@
 import { NumberCollection } from "./NumberCollection";
 
 // as long as something has these properties than it can be sorted
+// TS will not check that these functions and return values are DOING what you want.
+// for example, compare could receive 2 parameters, both being numbers, and then always return a fixed boolean
 interface Sortable {
   length: number;
   compare(leftIndex: number, rightIndex: number): boolean;
@@ -47,23 +49,23 @@ export class Sorter {
   }
 }
 
+
+// error because we will be extending the sorter2 class on all other classes that will have length, compare, and swap
+// however THIS class doesn't have those yet.
 export class Sorter2 {
   // Sorter can receive an array of numbers or a string
-  constructor(public collection: Sortable) {
-    this.collection = collection;
-  }
 
   bubbleSortNumbers(): void {
-  const { length } = this.collection;
+  const { length } = this;
 
     // keep track of number of iterations of the array
     for (let i = 0; i < length; i ++) {
       // make sure that we exclude the previously largest number
       for (let j = 0; j < length - i - 1; j ++) {
         // if left is larger than right
-        if (this.collection.compare(j, j+1)) {
+        if (this.compare(j, j+1)) {
           // swap the left and right
-          this.collection.swap(j, j+1)
+          this.swap(j, j+1)
         }
       }
     }
