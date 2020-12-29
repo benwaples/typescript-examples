@@ -1,5 +1,12 @@
 import { NumberCollection } from "./NumberCollection";
 
+// as long as something has these properties than it can be sorted
+interface Sortable {
+  length: number;
+  compare(leftIndex: number, rightIndex: number): boolean;
+  swap(leftIndex: number, rightIndex: number): void;
+}
+
 export class Sorter {
   // Sorter can receive an array of numbers or a string
   constructor(public collection: number[]| string) {
@@ -42,7 +49,7 @@ export class Sorter {
 
 export class Sorter2 {
   // Sorter can receive an array of numbers or a string
-  constructor(public collection: NumberCollection) {
+  constructor(public collection: Sortable) {
     this.collection = collection;
   }
 
