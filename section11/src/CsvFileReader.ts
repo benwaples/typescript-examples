@@ -37,3 +37,27 @@ const addThree = (a: number): number => {
 const add = (a: number, b: number): number => {
   return a + b;
 }
+
+// when to use Generics?
+class HoldNumber {
+
+  constructor(public data: number) {}
+}
+
+const holdNumber = new HoldNumber(23)
+
+class HoldString {
+
+  constructor(public data: string) {}
+}
+
+const holdString = new HoldString('I run pretty slow')
+
+class HoldValue<T> {
+
+  constructor(public data: T) {}
+}
+
+const holdNumberValue = new HoldValue<number>(23)
+
+const holdStringValue = new HoldValue<string>('I still run really slow')
