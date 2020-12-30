@@ -1,12 +1,13 @@
 // node doesn't include types for this module
 import fs from 'fs';
-import { Game, MatchResult2 } from './types';
-import { dateStringToDate } from './utils';
+import { Game } from './types';
 
-export class CsvFileReader {
-  data: string[][] | Game[] = [];
+export abstract class CsvFileReader {
+  data: Game[] = [];
 
   constructor(public filename: string) {}
+  
+  abstract mapRow(row: string[]): Game
 
   read(): void {
     this.data = fs.readFileSync(this.filename, {
@@ -16,17 +17,23 @@ export class CsvFileReader {
     .map((row: string): string[] => {
       return row.split(',')
     })
-    .map((row: string[]): Game => {
-      return [
-        dateStringToDate(row[0]),
-        row[1],
-        row[2], 
-        parseInt(row[3]),
-        parseInt(row[4]),
-        // casting in this case tells TS to trust us that row[5] will be something from MatchResult2
-        row[5] as MatchResult2,
-        row[6]
-      ]
-    })
+    // refactor to use mapRow in different classes in order to be able to return an similar array each time.
+    .map((row: string[]): Game => this.mapRow(row))
   }
+}
+
+// NOTHING TO DO WITH GENERICS
+const addOne = (a: number): number => {
+  return a + 1;
+}
+const addTwo = (a: number): number => {
+  return a + 2;
+}
+const addThree = (a: number): number => {
+  return a + 3;
+}
+
+// instead of hard coding the second number, you pass it as a parameter;
+const add = (a: number, b: number): number => {
+  return a + b;
 }
