@@ -1,12 +1,13 @@
+// use .bak file ending for backup of files
 // node doesn't include types for this module
 import fs from 'fs';
+import { Game, MatchResult2 } from './types';
+import { dateStringToDate } from './utils';
 
-export abstract class CsvFileReader<T> {
-  data: T[] = [];
+export class CsvFileReader {
+  data: Game[] = [];
 
   constructor(public filename: string) {}
-  
-  abstract mapRow(row: string[]): T
 
   read(): void {
     this.data = fs.readFileSync(this.filename, {
@@ -16,53 +17,17 @@ export abstract class CsvFileReader<T> {
     .map((row: string): string[] => {
       return row.split(',')
     })
-    // refactor to use mapRow in different classes in order to be able to return an similar array each time.
-    .map((row: string[]): T => this.mapRow(row))
+    .map((row: string[]): Game => {
+      return [
+        dateStringToDate(row[0]),
+        row[1],
+        row[2], 
+        parseInt(row[3]),
+        parseInt(row[4]),
+        // casting in this case tells TS to trust us that row[5] will be something from MatchResult2
+        row[5] as MatchResult2,
+        row[6]
+      ]
+    })
   }
 }
-
-// NOTHING TO DO WITH GENERICS
-const addOne = (a: number): number => {
-  return a + 1;
-}
-const addTwo = (a: number): number => {
-  return a + 2;
-}
-const addThree = (a: number): number => {
-  return a + 3;
-}
-
-// instead of hard coding the second number, you pass it as a parameter;
-const add = (a: number, b: number): number => {
-  return a + b;
-}
-
-// when to use Generics?
-// when you are using a function or class that can have multiple types
-// you then need to specify what type that will be used when you are calling that method
-
-// constricted to only holding numbers
-class HoldNumber {
-
-  constructor(public data: number) {}
-}
-
-const holdNumber = new HoldNumber(23)
-
-// constricted to only holding strings
-class HoldString {
-
-  constructor(public data: string) {}
-}
-
-const holdString = new HoldString('I run pretty slow')
-
-// pass the type as an argument to classify what type the data will be. 
-class HoldValue<T> {
-
-  constructor(public data: T) {}
-}
-
-const holdNumberValue = new HoldValue<number>(23)
-
-const holdStringValue = new HoldValue<string>('I still run really slow')
