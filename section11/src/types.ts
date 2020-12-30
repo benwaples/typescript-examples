@@ -12,3 +12,13 @@ export enum MatchResult2 {
 }
 
 // export enum in its own file rn because it's not good to export out of index
+
+export type Game = [
+  Date,
+  string,
+  string,
+  number,
+  number,
+  string,
+  string
+]

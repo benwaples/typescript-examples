@@ -1,10 +1,10 @@
 // node doesn't include types for this module
 import fs from 'fs';
-import { MatchResult2 } from './types';
+import { Game, MatchResult2 } from './types';
 import { dateStringToDate } from './utils';
 
 export class CsvFileReader {
-  data: string[][] = [];
+  data: string[][] | Game[] = [];
 
   constructor(public filename: string) {}
 
@@ -16,7 +16,7 @@ export class CsvFileReader {
     .map((row: string): string[] => {
       return row.split(',')
     })
-    .map((row: string[]): any => {
+    .map((row: string[]): Game => {
       return [
         dateStringToDate(row[0]),
         row[1],
