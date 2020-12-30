@@ -7,3 +7,7 @@ maps/.cache/
 section10/build/
 section10/package-lock.json
 section10/node_modules
+
+section11/node_modules
+section11/package-lock.json
+section11/build
