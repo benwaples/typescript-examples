@@ -1,9 +1,13 @@
+import { CsvFileReader } from "./CsvFileReader";
 import { MatchReader } from "./MatchReader";
 import { MatchResult2 } from "./types";
-const reader = new MatchReader('football.csv')
 
+// create object that satisfies the DataReader interface
+const csvFileReader = new CsvFileReader('football.csv')
 
-
+// create an instance of MatchReader and pass in something satisfying the 'dataReader' interface
+const matchReader = new MatchReader(csvFileReader)
+matchReader.load();
 
 // purpose of this object is unclear, so we can use a TS enum
 const MatchResult = {
@@ -12,9 +16,8 @@ const MatchResult = {
   Draw: 'D'
 }
 
-reader.read()
 let manUnitedWins = 0;
-for(let match of reader.data) {
+for(let match of matchReader.matches) {
   // this doesn't make much sense to other engineers because H and A don't mean anything unless you know the data
   if(match[1] === 'Man United' && match[5] === MatchResult2.HomeWin) {
     manUnitedWins++;
