@@ -16,6 +16,12 @@ const MatchResult = {
   Draw: 'D'
 }
 
+enum MatchResult2 {
+  HomeWin = 'H',
+  AwayWin = 'A',
+  Draw = 'D'
+}
+
 let manUnitedWins = 0;
 for(let match of matches) {
   // this doesn't make much sense to other engineers because H and A don't mean anything unless you know the data
