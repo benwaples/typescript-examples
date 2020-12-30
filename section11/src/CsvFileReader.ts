@@ -1,13 +1,12 @@
 // node doesn't include types for this module
 import fs from 'fs';
-import { Game } from './types';
 
-export abstract class CsvFileReader {
-  data: Game[] = [];
+export abstract class CsvFileReader<T> {
+  data: T[] = [];
 
   constructor(public filename: string) {}
   
-  abstract mapRow(row: string[]): Game
+  abstract mapRow(row: string[]): T
 
   read(): void {
     this.data = fs.readFileSync(this.filename, {
@@ -18,7 +17,7 @@ export abstract class CsvFileReader {
       return row.split(',')
     })
     // refactor to use mapRow in different classes in order to be able to return an similar array each time.
-    .map((row: string[]): Game => this.mapRow(row))
+    .map((row: string[]): T => this.mapRow(row))
   }
 }
 
@@ -39,6 +38,10 @@ const add = (a: number, b: number): number => {
 }
 
 // when to use Generics?
+// when you are using a function or class that can have multiple types
+// you then need to specify what type that will be used when you are calling that method
+
+// constricted to only holding numbers
 class HoldNumber {
 
   constructor(public data: number) {}
@@ -46,6 +49,7 @@ class HoldNumber {
 
 const holdNumber = new HoldNumber(23)
 
+// constricted to only holding strings
 class HoldString {
 
   constructor(public data: string) {}
@@ -53,6 +57,7 @@ class HoldString {
 
 const holdString = new HoldString('I run pretty slow')
 
+// pass the type as an argument to classify what type the data will be. 
 class HoldValue<T> {
 
   constructor(public data: T) {}

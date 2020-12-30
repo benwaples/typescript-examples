@@ -2,7 +2,7 @@ import { CsvFileReader } from "./CsvFileReader";
 import { Game, MatchResult2 } from "./types";
 import { dateStringToDate } from "./utils";
 
-export class MatchReader extends CsvFileReader {
+export class MatchReader extends CsvFileReader<Game> {
   mapRow(row: string[]): Game {
     return [
       dateStringToDate(row[0]),
