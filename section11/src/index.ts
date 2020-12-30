@@ -6,6 +6,8 @@ import { MatchResult2 } from "./types";
 const csvFileReader = new CsvFileReader('football.csv')
 
 // create an instance of MatchReader and pass in something satisfying the 'dataReader' interface
+// this is an example of a composition relationship. 'Has a'
+// when one class extends another, that is an inheritance relationship
 const matchReader = new MatchReader(csvFileReader)
 matchReader.load();
 
