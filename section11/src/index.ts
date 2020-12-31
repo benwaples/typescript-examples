@@ -1,8 +1,8 @@
-import { match } from "assert";
 import { WinsAnalysis } from "./analyzers/WinsAnalysis";
 import { CsvFileReader } from "./CsvFileReader";
 import { MatchReader } from "./MatchReader";
 import { ConsoleReport } from "./reportTargets/ConsoleReport";
+import { HtmlReport } from "./reportTargets/HtmlReport";
 import { Summary } from "./Summary";
 
 // create object that satisfies the DataReader interface
@@ -17,5 +17,7 @@ matchReader.load();
 // purpose of this object is unclear, so we can use a TS enum
 
 const summary = new Summary(new WinsAnalysis('Man United'), new ConsoleReport())
+const htmlSummary = new Summary(new WinsAnalysis('Man United'), new HtmlReport())
 
 summary.buildAndPrintReport(matchReader.matches);
+htmlSummary.buildAndPrintReport(matchReader.matches)
