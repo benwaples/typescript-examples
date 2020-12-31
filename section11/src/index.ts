@@ -1,6 +1,9 @@
+import { match } from "assert";
+import { WinsAnalysis } from "./analyzers/WinsAnalysis";
 import { CsvFileReader } from "./CsvFileReader";
 import { MatchReader } from "./MatchReader";
-import { MatchResult2 } from "./types";
+import { ConsoleReport } from "./reportTargets/ConsoleReport";
+import { Summary } from "./Summary";
 
 // create object that satisfies the DataReader interface
 const csvFileReader = new CsvFileReader('football.csv')
@@ -12,20 +15,7 @@ const matchReader = new MatchReader(csvFileReader)
 matchReader.load();
 
 // purpose of this object is unclear, so we can use a TS enum
-const MatchResult = {
-  HomeWin: 'H',
-  AwayWin: 'A',
-  Draw: 'D'
-}
 
-let manUnitedWins = 0;
-for(let match of matchReader.matches) {
-  // this doesn't make much sense to other engineers because H and A don't mean anything unless you know the data
-  if(match[1] === 'Man United' && match[5] === MatchResult2.HomeWin) {
-    manUnitedWins++;
-  } else if (match[2] === 'Man United' && match[5] === MatchResult2.AwayWin) {
-    manUnitedWins++;
-  }
-}
+const summary = new Summary(new WinsAnalysis('Man United'), new ConsoleReport())
 
-console.log(`Manchester Wins: ${manUnitedWins}`) 
+summary.buildAndPrintReport(matchReader.matches);
