@@ -13,6 +13,7 @@ export enum MatchResult2 {
 
 // export enum in its own file rn because it's not good to export out of index
 
+// example of a tuple
 export type Game = [
   Date,
   string,

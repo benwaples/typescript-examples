@@ -6,12 +6,14 @@ import { HtmlReport } from "./reportTargets/HtmlReport";
 import { Summary } from "./Summary";
 
 // create object that satisfies the DataReader interface
+// we dont need this anymore because we make an instance of CsvFileReader in the MatchReader
 const csvFileReader = new CsvFileReader('football.csv')
 
 // create an instance of MatchReader and pass in something satisfying the 'dataReader' interface
 // this is an example of a composition relationship. 'Has a'
 // when one class extends another, that is an inheritance relationship
-const matchReader = new MatchReader(csvFileReader)
+// we aren't initializing a MatchReader because we are using a static method
+const matchReader = MatchReader.fromCsv('football.csv')
 matchReader.load();
 
 // purpose of this object is unclear, so we can use a TS enum
