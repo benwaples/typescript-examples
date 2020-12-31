@@ -22,4 +22,14 @@ const summary = new Summary(new WinsAnalysis('Man United'), new ConsoleReport())
 const htmlSummary = new Summary(new WinsAnalysis('Man United'), new HtmlReport())
 
 summary.buildAndPrintReport(matchReader.matches);
-htmlSummary.buildAndPrintReport(matchReader.matches)
+htmlSummary.buildAndPrintReport(matchReader.matches);
+
+const anotherSummary = new Summary(new WinsAnalysis('Burnley'), new ConsoleReport())
+anotherSummary.buildAndPrintReport(matchReader.matches)
+
+const summary3 = new Summary(new WinsAnalysis('Leicester'), new ConsoleReport())
+summary3.buildAndPrintReport(matchReader.matches)
+
+const summary4 = new Summary(new WinsAnalysis('Bournemouth'), new ConsoleReport())
+summary4.buildAndPrintReport(matchReader.matches)
+// it looks like all teams won 18 matches? not sure if im using this right
