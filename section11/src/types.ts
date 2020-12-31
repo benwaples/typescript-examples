@@ -19,6 +19,6 @@ export type Game = [
   string,
   number,
   number,
-  string,
+  MatchResult2,
   string
 ]
