@@ -22,3 +22,6 @@ class ArrayOfAnything<T> {
     return this.collection[index]
   }
 }
+
+// hover over stringArr and see how TS figures out how this is now an array of strings, not of type T
+const stringArr = new ArrayOfAnything<string>(['a', 'b'])
