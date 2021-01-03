@@ -2,6 +2,8 @@ import express, { Request, Response } from 'express';
 
 const app = express()
 
+// Request and Response are classes that come along with the express app
+//  so we can use them to define the the parameters for an express endpoint
 app.get('/', (req: Request, res: Response) => {
   res.send(`
     <div>
