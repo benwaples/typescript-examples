@@ -2,6 +2,9 @@ import { Router, Request, Response } from 'express'
 
 const router = Router();
 
+// syntax for saying we are going to get a list of keys that are strings that hold strings
+interface BodyType { [key: string]: string | undefined}
+
 router.get('/login', (req: Request, res: Response) => {
   res.send(`
     <form method="POST">
@@ -19,9 +22,13 @@ router.get('/login', (req: Request, res: Response) => {
 })
 
 router.post('/login', (req: Request, res: Response) => {
-  const { email, password } = req.body;
+  // a way to better type annotate express library
+  const { email, password }: BodyType = req.body;
 
-  res.send(email + password)
+  // only send if email is truthy.
+  if(email) {
+    res.send(email + password)
+  }
 })
 
 export { router }
