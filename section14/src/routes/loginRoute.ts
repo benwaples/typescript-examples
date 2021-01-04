@@ -3,8 +3,13 @@ import { Router, Request, Response } from 'express'
 const router = Router();
 
 // syntax for saying we are going to get a list of keys that are strings that hold strings
-interface BodyType { [key: string]: string | undefined}
+interface RequestWithBody extends Request{ 
+  body: {
+    [key: string]: string | undefined
+  }
+}
 
+// LFG ssr
 router.get('/login', (req: Request, res: Response) => {
   res.send(`
     <form method="POST">
@@ -21,13 +26,20 @@ router.get('/login', (req: Request, res: Response) => {
   `)
 })
 
-router.post('/login', (req: Request, res: Response) => {
-  // a way to better type annotate express library
-  const { email, password }: BodyType = req.body;
+// here we are using the new interface we just made.
+// a way to better type annotate express library
+router.post('/login', (req: RequestWithBody, res: Response) => {
+  // email is email because we gave the input a name of email. 
+  // if you give it something else above, then you must give it a different name below
+  const { email, password } = req.body;
 
+  // this is called a type guard
   // only send if email is truthy.
+  // poor error handling but manages if email or password are undefined
   if(email) {
     res.send(email + password)
+  } else {
+    res.send('error while posting')
   }
 })
 
