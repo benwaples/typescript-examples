@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import { router } from './routes/loginRoute';
-import bodyParser from 'body-parser'
+import bodyParser from 'body-parser';
+import cookieSession from 'cookie-session';
 
 const app = express()
 
@@ -14,6 +15,9 @@ app.get('/test', (req: Request, res: Response) => {
   `)
 })
 
+// this allows us to access sessions on the req
+app.use(cookieSession({ keys: [ 'SESSION'] }))
+// this allows us to access the body on the req
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(router)
 
