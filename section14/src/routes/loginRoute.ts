@@ -18,4 +18,10 @@ router.get('/', (req: Request, res: Response) => {
   `)
 })
 
+router.post('/login', (req: Request, res: Response) => {
+  const { email, password } = req.body;
+
+  console.log(email + password)
+})
+
 export { router }

@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import { router } from './routes/loginRoute';
+import bodyParser from 'body-parser'
 
 const app = express()
 
@@ -13,6 +14,7 @@ app.get('/test', (req: Request, res: Response) => {
   `)
 })
 
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(router)
 
 app.listen(3000, () => {
