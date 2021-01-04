@@ -2,7 +2,7 @@ import { Router, Request, Response } from 'express'
 
 const router = Router();
 
-router.get('/', (req: Request, res: Response) => {
+router.get('/login', (req: Request, res: Response) => {
   res.send(`
     <form method="POST">
       <div>
@@ -21,7 +21,7 @@ router.get('/', (req: Request, res: Response) => {
 router.post('/login', (req: Request, res: Response) => {
   const { email, password } = req.body;
 
-  console.log(email + password)
+  res.send(email + password)
 })
 
 export { router }
