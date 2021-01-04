@@ -2,6 +2,11 @@ import { Router, Request, Response } from 'express'
 
 const router = Router();
 
+const user = {
+  email: '',
+  password: ''
+}
+
 // syntax for saying we are going to get a list of keys that are strings that hold strings
 interface RequestWithBody extends Request{ 
   body: {
@@ -36,10 +41,10 @@ router.post('/login', (req: RequestWithBody, res: Response) => {
   // this is called a type guard
   // only send if email is truthy.
   // poor error handling but manages if email or password are undefined
-  if(email) {
-    res.send(email + password)
+  if(email && password && email === user.email && password === user.password) {
+    // then redirect to different route
   } else {
-    res.send('error while posting')
+    res.send('Invalid username or password')
   }
 })
 
