@@ -5,7 +5,7 @@ class Boat {
     return `The color of this boat is ${this.color}`
   }
 
-  @testDecorator
+  @logError
   pilot(): void {
     console.log('swish')
   }
@@ -13,7 +13,12 @@ class Boat {
 }
 
 // decorator gets run one time when the class is called
-function testDecorator(target: any, key: string): void {
-  console.log(`target: ${target}`)
+function logError(target: any, key: string, desc: PropertyDescriptor /* this allows us to change properties on classes*/): void {
+  console.log( 'target', target)
   console.log(`key: ${key}`)
 }
+
+// decorators are fancy syntax that will display a prototype and key. Key is the function below the decorator
+
+// this is the same thing as using a decorator
+// testDecorator(Boat.prototype, 'pilot')
