@@ -1,17 +1,31 @@
 class Boat {
+  @testDecorator
   color: string= 'red';
 
+  @testDecorator
   get formattedColor(): string {
     return `The color of this boat is ${this.color}`
   }
 
   // custom error message
   @logError('sunk that mf')
-  pilot(): void {
-    throw new Error();
-    console.log('swish')
+  pilot(@parameterDecorator speed: string, @parameterDecorator generateWake: boolean): void {
+    if(speed === 'fast') {
+      console.log('swish')
+    } else {
+      console.log('sunk')
+    }
   }
 
+}
+
+function parameterDecorator(target: Boat, key: string, index: number) {
+  console.log(key, index)
+}
+
+// we cannot read a property off an instance of boat because boat doesnt exist yet.
+function testDecorator(target: any, key: string) {
+  console.log(key)
 }
 
 // decorator gets run one time when the class is called
@@ -37,4 +51,3 @@ function logError(errorMessage: string) {
 // this is the same thing as using a decorator
 // testDecorator(Boat.prototype, 'pilot')
 
-new Boat().pilot()
