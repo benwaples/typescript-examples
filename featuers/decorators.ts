@@ -5,7 +5,8 @@ class Boat {
     return `The color of this boat is ${this.color}`
   }
 
-  @logError
+  // custom error message
+  @logError('sunk that mf')
   pilot(): void {
     throw new Error();
     console.log('swish')
@@ -14,14 +15,19 @@ class Boat {
 }
 
 // decorator gets run one time when the class is called
-function logError(target: any, key: string, desc: PropertyDescriptor /* this allows us to change properties on classes*/): void {
-  const method = desc.value;
+// function returning a decorator is called a decorator factory
+// used to configure a decorator
+function logError(errorMessage: string) { 
+  return function (target: any, key: string, desc: PropertyDescriptor /* this allows us to change properties on classes*/): void {
+    const method = desc.value;
 
-  desc.value = function () {
-    try {
-      method();
-    } catch(e) {
-      console.log('oops, you sunk the boat')
+    desc.value = function () {
+      // when encountering any error, this error will run
+      try {
+        method();
+      } catch(e) {
+        console.log(errorMessage)
+      }
     }
   }
 }
