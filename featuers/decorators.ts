@@ -1,3 +1,5 @@
+// decorators are syntax sugar that tell us different things about a class or instances of classes
+
 @classDecorator
 class Boat {
   @testDecorator
