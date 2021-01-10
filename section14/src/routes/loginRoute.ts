@@ -1,4 +1,15 @@
-import { Router, Request, Response } from 'express'
+import { Router, Request, Response, NextFunction } from 'express'
+
+function requireAuth(req: Request, res: Response, next: NextFunction) {
+  if(req.session && req.session.loggedIn) {
+    // tells other engineers that you arent returning anything, like the function says
+    next();
+    return;
+  } 
+
+  res.status(403)
+  res.send('Not Permitted')
+}
 
 const router = Router();
 
@@ -70,6 +81,11 @@ router.get('/', (req: Request, res: Response) => {
 router.get('/logout', (req: Request, res: Response) => {
   req.session = undefined;
   res.redirect('/')
+})
+
+// implementing auth middleware
+router.get('/protected', requireAuth, (req: Request, res: Response) => {
+  res.send('welcome to protected route, logged in user')
 })
 
 export { router }
