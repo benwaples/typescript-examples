@@ -46,6 +46,16 @@ router.post('/login', (req: RequestWithBody, res: Response) => {
   } else {
     res.send('Invalid username or password')
   }
+});
+
+router.get('/', (req: Request, res: Response) => {
+  if(req.session && req.session.loggedIn) {
+    res.send(`
+      <div>
+        <h1> You are logged in </h1>
+      </div>
+    `)
+  }
 })
 
 export { router }
