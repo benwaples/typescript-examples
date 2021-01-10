@@ -1,3 +1,4 @@
+@classDecorator
 class Boat {
   @testDecorator
   color: string= 'red';
@@ -9,7 +10,8 @@ class Boat {
 
   // custom error message
   @logError('sunk that mf')
-  pilot(@parameterDecorator speed: string, @parameterDecorator generateWake: boolean): void {
+  pilot(
+    @parameterDecorator speed: string, @parameterDecorator generateWake: boolean): void {
     if(speed === 'fast') {
       console.log('swish')
     } else {
@@ -17,6 +19,11 @@ class Boat {
     }
   }
 
+}
+
+function classDecorator(constructor: typeof Boat) {
+  console.log(constructor);
+  
 }
 
 function parameterDecorator(target: Boat, key: string, index: number) {
