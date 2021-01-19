@@ -90,26 +90,38 @@ router.get('/protected', requireAuth, (req: Request, res: Response) => {
 
 export { router }
 
-@controller('/auth')
-class LoginController {
-  @get('/login')
-  getLogin(req: Request, res: Response): void {
-    res.send('form')
+// @controller('/auth')
+// class LoginController {
+//   @get('/login')
+//   getLogin(req: Request, res: Response): void {
+//     res.send('form')
+//   }
+
+//   @postMessage('/login')
+//   @validateBody('email', 'password')
+//   @use(requireAuth)
+//   postLogin(req: Request, res: Response): void {
+//     const { email, password } = req.body;
+
+
+//     if(email && password && email === user.email && password === user.password) {
+//       // then redirect to different route
+//       req.session = { loggedIn: true };
+//       res.redirect('/')
+//     } else {
+//       res.send('Invalid username or password')
+//     }
+//   }
+// }
+
+function post(routeName: string) {
+  return function(target: any, key: string, desc: PropertyDescriptor): void {
+    router.post(routeName, target[key])
   }
+}
 
-  @postMessage('/login')
-  @validateBody('email', 'password')
-  @use(requireAuth)
-  postLogin(req: Request, res: Response): void {
-    const { email, password } = req.body;
-
-
-    if(email && password && email === user.email && password === user.password) {
-      // then redirect to different route
-      req.session = { loggedIn: true };
-      res.redirect('/')
-    } else {
-      res.send('Invalid username or password')
-    }
+function use(middleware: any) {
+  return function(target: any, key, string, desc: PropertyDescriptor) {
+    router.addMiddlewareToHandlerWeJustRegistered(middleware)
   }
 }
