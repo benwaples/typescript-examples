@@ -1,24 +1,33 @@
 import 'reflect-metadata'
 
+@controller
 class Plane {
   color: string = 'red';
 
-  @markFunction('hi there')
+  @get('hi there')
   fly(): void {
     console.log('vrrr');
   }
 }
 
 // decorator factory that makes little secrets
-function markFunction(secretInfo: string) {
+function get(path: string) {
   
   return function (target: Plane, key: string) {
-    Reflect.defineMetadata('secret', secretInfo, target, key)
+    Reflect.defineMetadata('path', path, target, key)
 }
 }
 
 // typeof plane is a reference to the constructor method of the class Plane
-function printMetadata(target: typeof Plane)
+function controller(target: typeof Plane) {
+  for( let key in target.prototype) {
+    const path = Reflect.getMetadata('path', target.prototype, key)
+    console.log(path);
+    
+    // when this controller is run with the target passed in, run the given route
+    router.get(path, target.prototype[key])
+  }
+}
 
 const secret = Reflect.getMetadata('secret', Plane.prototype, 'fly')
 
