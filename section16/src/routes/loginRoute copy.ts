@@ -121,7 +121,7 @@ function post(routeName: string) {
 }
 
 function use(middleware: any) {
-  return function(target: any, key, string, desc: PropertyDescriptor) {
+  return function(target: any, key: string, desc: PropertyDescriptor) {
     router.addMiddlewareToHandlerWeJustRegistered(middleware)
   }
 }
