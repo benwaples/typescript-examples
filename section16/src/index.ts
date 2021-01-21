@@ -2,6 +2,9 @@ import express, { Request, Response } from 'express';
 import { router } from './routes/loginRoute';
 import bodyParser from 'body-parser';
 import cookieSession from 'cookie-session';
+import { router as controllerRouter } from './controllers/decorators/controllers'
+
+import './controllers/LoginController'
 
 const app = express()
 
@@ -20,6 +23,8 @@ app.use(cookieSession({ keys: [ 'SESSION'] }))
 // this allows us to access the body on the req
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(router)
+
+app.use(controllerRouter)
 
 app.listen(3000, () => {
   console.log('Listening to port 3000')

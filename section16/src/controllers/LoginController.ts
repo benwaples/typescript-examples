@@ -1,11 +1,13 @@
 import { Router, Request, Response, NextFunction } from 'express'
+import { controller } from './decorators/controllers'
+import { get } from './decorators/routers'
 
 
-@controller('/')
-class LoginController {
+@controller('/auth')
+export default class LoginController {
 
   @get('/login')
-  getLogin('/login', (req: Request, res: Response): void {
+  getLogin(req: Request, res: Response): void {
     res.send(`
       <form method="POST">
         <div>
@@ -19,5 +21,6 @@ class LoginController {
         <button>Submit</button>
       </form>
     `)
-  })
+  }
 }
+
