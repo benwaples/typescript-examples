@@ -1,10 +1,12 @@
-import { Router, Request, Response, NextFunction } from 'express'
-import { controller } from './decorators/controllers'
+import { Request, Response } from 'express'
 import { get } from './decorators/routers'
+import { controller } from './decorators/controllers'
+// this should work but the index.ts file is not doing what I think it should do.
+// import { get, controller } from './decorators'
 
 
 @controller('/auth')
-export default class LoginController {
+class LoginController {
 
   @get('/login')
   getLogin(req: Request, res: Response): void {

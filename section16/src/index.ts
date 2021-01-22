@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import { router } from './routes/loginRoute';
 import bodyParser from 'body-parser';
 import cookieSession from 'cookie-session';
-import { router as controllerRouter } from './controllers/decorators/controllers'
+import { AppRouter} from './AppRouter'
 
 import './controllers/LoginController'
 
@@ -24,7 +24,7 @@ app.use(cookieSession({ keys: [ 'SESSION'] }))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(router)
 
-app.use(controllerRouter)
+app.use(AppRouter.getInstance())
 
 app.listen(3000, () => {
   console.log('Listening to port 3000')
