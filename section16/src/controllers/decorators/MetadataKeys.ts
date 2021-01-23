@@ -2,5 +2,6 @@
 // i wonder what kind of data can go into an enum
 export enum MetadataKeys {
   method = 'method',
-  path = 'path'
+  path = 'path',
+  middleware = 'middleware'
 }
