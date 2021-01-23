@@ -1,4 +1,5 @@
 import 'reflect-metadata'
+import { Methods } from './Methods'
 
 function routeBinder(method: string) {
   return function(path: string) {
@@ -10,12 +11,12 @@ function routeBinder(method: string) {
   }
 }
 
-export const get = routeBinder('get')
-export const post = routeBinder('post')
-export const put = routeBinder('put')
+export const get = routeBinder(Methods.get)
+export const post = routeBinder(Methods.post)
+export const put = routeBinder(Methods.put)
 // delete is a protected keyword in JS, so the delete method is actually del
-export const del = routeBinder('del')
-export const patch = routeBinder('patch')
+export const del = routeBinder(Methods.del)
+export const patch = routeBinder(Methods.patch)
 
 // works, but most of this is duplicated from the above function
 export function badPostMethod(path: string) {
