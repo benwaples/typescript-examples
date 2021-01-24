@@ -13,6 +13,12 @@ const user = {
 @controller('/auth')
 class LoginController {
 
+  // this should error because its behaving like an endpoint and would leave our server hanging
+  @get('/')
+  add(a: number, b: number): number {
+    return a + b;
+  }
+
   @get('/login')
   getLogin(req: Request, res: Response): void {
     res.send(`
