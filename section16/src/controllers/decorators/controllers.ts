@@ -8,7 +8,6 @@ import {
   RequestHandler, 
   NextFunction 
 } from 'express';
-import { router } from '../../routes/loginRoute';
 
 //check if keys are available, like middleware
 function bodyValidators(keys: string[]): RequestHandler {
@@ -20,7 +19,8 @@ function bodyValidators(keys: string[]): RequestHandler {
 
     for (let key of keys) {
       if(!req.body[key]) {
-        res.status(422).send('Invalid Request');
+        // tell user which part of the request form failed
+        res.status(422).send(`Missing property ${key}`);
         return;
       }
     }

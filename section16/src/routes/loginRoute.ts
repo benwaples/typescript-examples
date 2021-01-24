@@ -13,13 +13,13 @@ function requireAuth(req: Request, res: Response, next: NextFunction) {
 
 const router = Router();
 
-const user = {
+export const user = {
   email: 'ben',
   password: 'ben'
 }
 
 // syntax for saying we are going to get a list of keys that are strings that hold strings
-interface RequestWithBody extends Request{ 
+export interface RequestWithBody extends Request{ 
   body: {
     [key: string]: string | undefined
   }
