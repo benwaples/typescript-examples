@@ -1,10 +1,10 @@
 import express, { Request, Response } from 'express';
-import { router } from './routes/loginRoute';
 import bodyParser from 'body-parser';
 import cookieSession from 'cookie-session';
 import { AppRouter} from './AppRouter'
 
 import './controllers/LoginController'
+import './controllers/RootController'
 
 const app = express()
 
@@ -22,7 +22,6 @@ app.get('/test', (req: Request, res: Response) => {
 app.use(cookieSession({ keys: [ 'SESSION'] }))
 // this allows us to access the body on the req
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(router)
 
 app.use(AppRouter.getInstance())
 
