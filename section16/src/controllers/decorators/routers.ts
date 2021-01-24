@@ -1,11 +1,17 @@
 import 'reflect-metadata'
 import { Methods } from './Methods'
 import { MetadataKeys } from './MetadataKeys'
+import { RequestHandler } from 'express'
 
+// this is saying that what ever gets passed into the routeBinder function (like the body) will have to have values that are of RequestHandler type
+interface RouteHandlerDescriptor extends PropertyDescriptor {
+  // limit the type of values that can be passed
+  value?: RequestHandler
+}
 
 function routeBinder(method: string) {
   return function(path: string) {
-    return function(target: any, key: string, desc: PropertyDescriptor) {
+    return function(target: any, key: string, desc: RouteHandlerDescriptor) {
       // make use of the metadata package
       Reflect.defineMetadata(MetadataKeys.path, path, target, key)
       Reflect.defineMetadata(MetadataKeys.method, method, target, key)

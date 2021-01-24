@@ -14,10 +14,11 @@ const user = {
 class LoginController {
 
   // this should error because its behaving like an endpoint and would leave our server hanging
-  @get('/')
-  add(a: number, b: number): number {
-    return a + b;
-  }
+  // uncomment the error that happens after updating PropertyDescriptor 
+  // @get('/')
+  // add(a: number, b: number): number {
+  //   return a + b;
+  // }
 
   @get('/login')
   getLogin(req: Request, res: Response): void {
