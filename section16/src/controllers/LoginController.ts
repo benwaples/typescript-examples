@@ -2,10 +2,13 @@ import { Request, Response, NextFunction } from 'express'
 import { get, post } from './decorators/routers'
 import { controller } from './decorators/controllers'
 import { bodyValidator } from './decorators/bodyValidator'
-import { RequestWithBody, user } from '../routes/loginRoute'
 // this should work but the index.ts file is not doing what I think it should do.
 // import { get, controller } from './decorators'
 
+const user = {
+  email: 'ben',
+  password: 'ben'
+}
 
 @controller('/auth')
 class LoginController {
@@ -29,7 +32,7 @@ class LoginController {
 
   @post('/login')
   @bodyValidator('email', 'password')
-  postLogin(req: RequestWithBody, res: Response) {
+  postLogin(req: Request, res: Response) {
     const { email, password } = req.body;
   
     if(email && password && email === user.email && password === user.password) {

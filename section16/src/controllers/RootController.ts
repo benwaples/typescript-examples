@@ -24,14 +24,14 @@ class RootController {
       res.send(`
         <div>
           <h1> You are logged in </h1>
-          <a href="/logout">Logout</a>
+          <a href="/auth/logout">Logout</a>
         </div>
       `)
     } else {
       res.send(`
         <div>
           <h1> You are not logged in </h1>
-          <a href="/login">Log in</a>
+          <a href="/auth/login">Log in</a>
         </div>
       `)
     }
